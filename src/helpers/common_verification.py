@@ -1,4 +1,4 @@
-# HTTP Status Verfication
+# HTTP Status Verification
 
 def verify_http_status_code(response_data, expect_data):
     print(response_data.status_code)
