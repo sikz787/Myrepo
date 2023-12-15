@@ -5,7 +5,7 @@
 # Read the Excel - openpyxl
 import openpyxl
 import requests
-
+import pytest
 from src.constants.api_constants import APIConstants
 from src.helpers.utils import common_headers_json
 
@@ -32,15 +32,10 @@ def make_request_auth(username, password):
     return response
 
 
-def test_post_create_token():
-    file_path = "/Users/pramod/PycharmProjects/Py1xAPIAutomation/tests/datadriventesting/testdata_ddt.xlsx"
-    credentials = read_credentials_from_excel(file_path)
+@pytest.mark.parametrize("user_cred", read_credentials_from_excel("/Users/pramod/PycharmProjects/Py1xAPIAutomation/tests/datadriventesting/testdata_ddt.xlsx"))
+def test_post_create_token(user_cred):
+    username = user_cred["username"]
+    password = user_cred["password"]
+    response = make_request_auth(username, password)
+    assert response.status_code == 200
 
-    for user_cred in credentials:
-        username = user_cred["username"]
-        password = user_cred["password"]
-        print(username, password)
-        response = make_request_auth(username, password)
-        print(response)
-        # Here you can also write the logic for negative and positive
-        assert response.status_code == 200

@@ -13,8 +13,15 @@ class TestCreateBooking(object):
     @pytest.mark.positive
     def test_create_booking_tc1(self):
         # URL, Headers, Payload,
+
+        payload = payload_create_booking()
+        print(payload)
+        #payload.update({"firstname: "pramod","lastname:"dutta})
+        payload["firstname"] = "Pramod"
+        print(payload)
+
         response = post_requests(url=APIConstants.url_create_booking(), auth=None, headers=common_headers_json(),
-                                 payload=payload_create_booking(), in_json=False)
+                                 payload=payload, in_json=False)
         print(response)
         bookingid = response.json()["bookingid"]
         print(bookingid)
