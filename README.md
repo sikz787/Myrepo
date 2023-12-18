@@ -36,3 +36,7 @@ Hybrid Custom Framework to Test the REST APIs
 
 ### To Work with the Excel
 ``pip install openpyxl``
+
+
+### To work wit JSON Schema
+```pip install jsonschema```
