@@ -49,4 +49,4 @@ class TestCreateBooking(object):
 
         response = put_requests(url=delete_url, headers=common_headers_for_put_delete_patch(), auth=None,
                                 payload=None, in_json=False)
-        print(response.json())
+        print(response.status_code)
